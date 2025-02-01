@@ -73,3 +73,58 @@ for i in squares:
 
 list2 = [i**2 for i in list1]
 print(list2)
+
+#C
+# class A
+# {
+#     int sum(int a, int b)
+#     {
+#         return a + b;
+#     }
+#     double sum(double a, double b)
+#     {
+#         return a + b;
+#     }
+# }
+
+
+class A:
+    def __init__(self):
+        pass
+
+    def sum(self, a, b):
+        return a + b
+
+class B(A):
+    def __init__(self):
+        pass
+
+    def sum(self, a, b):
+        return a * b
+
+
+a = A()
+print(a.sum(10, 10))
+print(a.sum(10.2, 10.2))
+
+class C(A):
+
+    def __init__(self):
+        super().__init__()
+    
+    def sum(self, a, b):
+        return a - b
+    
+class D(A):
+
+    def __init__(self):
+        super().__init__()
+        self.a = B() # composition # tightly coupled
+        self.b = None #
+    
+    # injection method # loosely coupled
+    def inject(self, b):
+        self.b = b
+
+
+d = D().inject(D())
